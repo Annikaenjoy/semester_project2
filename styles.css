@@ -1,5 +1,58 @@
+* {
+  box-sizing: border-box;
+}
 /* BODY
 -------------------------------------*/
 body {
   background-color: #c8d0d5;
+  margin: 20px auto;
+}
+.results-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.character-cards {
+  background-color: #fff;
+  border: 1px solid grey;
+  padding: 10px;
+  margin: 10px;
+  min-width: 300px;
+}
+
+/* HEADINGS AND TEXT
+-------------------------------------*/
+h1 {
+  font-family: "Cinzel", serif;
+  font-size: 48px;
+  margin: 20px 10px;
+}
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  text-align: center;
+}
+h3 {
+  font-family: "Cinzel", serif;
+  font-size: 24px;
+  text-align: center;
+}
+h4 {
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  text-align: center;
+}
+p {
+  font-family: "Cinzel", serif;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* IMAGES
+-------------------------------------*/
+img {
+  max-height: 200px;
+  display: flex;
+  margin: auto;
 }
