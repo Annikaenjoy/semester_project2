@@ -10,6 +10,8 @@
 // 148  - Arya Stark
 
 import { baseUrl } from "../settings/api.js";
+import { getSelectedPlayers } from "./utils/playersFunction.js";
+
 const resultsContainer = document.querySelector(".results-container");
 
 // Character numbers to add to baseUrl
@@ -31,11 +33,11 @@ async function getCharacters() {
         character.gender = "&#9794";
       }
 
-      const name = character.name;
+      const characterName = character.name;
 
-      resultsContainer.innerHTML += `<div class="character-cards">
+      resultsContainer.innerHTML += `<div class="character-cards" data-name="${character.name}">
       <h3>${character.name}</h3>
-      <img src="../img/characters/${name}.png" />
+      <img src="../img/characters/${characterName}.png" />
         <p class="gender">Gender: ${character.gender}</p>
         <p>Culture: ${character.culture}</p>
         <p>Born: ${character.born}</p>
@@ -54,10 +56,32 @@ async function getCharacters() {
   characterCards.forEach((cards) => {
     cards.addEventListener("click", handleClick);
   });
-
+  // Toggle and untoggle cards
   function handleClick(event) {
-    console.log(event);
+    // console.log(event);
+    this.classList.toggle("character-card");
+    this.classList.toggle("character-cards");
+
+    const name = this.dataset.name;
+
+    const selectedPlayers = getSelectedPlayers();
+
+    const playerExists = selectedPlayers.find(function (play) {
+      return play.name === name;
+    });
+    if (playerExists === undefined) {
+      const player = { name: name };
+      selectedPlayers.push(player);
+      savePlayers(selectedPlayers);
+    } else {
+      const newPlayers = selectedPlayers.filter((play) => play.name !== name);
+      savePlayers(newPlayers);
+    }
   }
 }
 
 getCharacters();
+
+function savePlayers(players) {
+  localStorage.setItem("players", JSON.stringify(players));
+}
