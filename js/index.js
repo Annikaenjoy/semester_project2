@@ -66,6 +66,7 @@ async function getCharacters() {
 
     const selectedPlayers = getSelectedPlayers();
 
+    // Check if player exists in localstorage
     const playerExists = selectedPlayers.find(function (play) {
       return play.name === name;
     });
