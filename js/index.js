@@ -13,10 +13,9 @@ import { baseUrl } from "../settings/api.js";
 import { getSelectedPlayers } from "./utils/playersFunction.js";
 
 const resultsContainer = document.querySelector(".results-container");
-// const startButton = document.querySelector("#start-btn");
 
 // Character numbers to add to baseUrl
-const characters = [583, 957, 1303, 529, 238, 823, 1052, 743, 565, 148];
+const characters = [583, 957, 1303, 529, 238, 1052, 823, 743, 565, 148];
 
 // Loop through characters and fetch. Create new urls and get data
 async function getCharacters() {
@@ -72,24 +71,33 @@ async function getCharacters() {
   characterCards.forEach((cards) => {
     cards.addEventListener("click", handleClick);
   });
-  // Toggle and untoggle cards
+
   function handleClick(event) {
+    const name = this.dataset.name;
+    const selectedPlayers = getSelectedPlayers();
+    const numSelected = selectedPlayers.length;
+
+    if (numSelected === 2 && !this.classList.contains("character-card")) {
+      // Already have two selected characters and clicked on non-selected character
+      return;
+    }
+
     // console.log(event);
     this.classList.toggle("character-card");
     this.classList.toggle("character-cards");
 
-    const name = this.dataset.name;
-    const selectedPlayers = getSelectedPlayers();
-
-    //Check if player exists in localstorage
+    // Check if player exists in localstorage
     const playerExists = selectedPlayers.find(function (play) {
       return play.name === name;
     });
-    if (playerExists === undefined) {
+
+    if (!playerExists) {
+      // Add player to localstorage
       const player = { name: name };
       selectedPlayers.push(player);
       savePlayers(selectedPlayers);
     } else {
+      // Remove player from localstorage
       const newPlayers = selectedPlayers.filter((play) => play.name !== name);
       savePlayers(newPlayers);
     }
