@@ -13,6 +13,7 @@ import { baseUrl } from "../settings/api.js";
 import { getSelectedPlayers } from "./utils/playersFunction.js";
 
 const resultsContainer = document.querySelector(".results-container");
+// const startButton = document.querySelector("#start-btn");
 
 // Character numbers to add to baseUrl
 const characters = [583, 957, 1303, 529, 238, 823, 1052, 743, 565, 148];
@@ -21,6 +22,7 @@ const characters = [583, 957, 1303, 529, 238, 823, 1052, 743, 565, 148];
 async function getCharacters() {
   for (let i = 0; i < characters.length; i++) {
     let newUrl = baseUrl + characters[i];
+    let cssClass = "character-cards";
 
     try {
       const response = await fetch(newUrl);
@@ -32,10 +34,24 @@ async function getCharacters() {
       } else {
         character.gender = "&#9794";
       }
+      if (character.culture === "") {
+        character.culture = "Unknown";
+      }
 
       const characterName = character.name;
 
-      resultsContainer.innerHTML += `<div class="character-cards" data-name="${character.name}">
+      const selectedPlayers = getSelectedPlayers();
+
+      const doesObjectExist = selectedPlayers.find((play) => {
+        console.log(play);
+        return play.name === characterName;
+      });
+      // console.log(doesObjectExist);
+
+      if (doesObjectExist) {
+        cssClass = "character-card";
+      }
+      resultsContainer.innerHTML += `<div class="character-cards ${cssClass}" data-name="${character.name}">
       <h3>${character.name}</h3>
       <img src="../img/characters/${characterName}.png" />
         <p class="gender">Gender: ${character.gender}</p>
@@ -63,10 +79,9 @@ async function getCharacters() {
     this.classList.toggle("character-cards");
 
     const name = this.dataset.name;
-
     const selectedPlayers = getSelectedPlayers();
 
-    // Check if player exists in localstorage
+    //Check if player exists in localstorage
     const playerExists = selectedPlayers.find(function (play) {
       return play.name === name;
     });

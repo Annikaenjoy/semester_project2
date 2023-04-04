@@ -33,7 +33,7 @@ body {
   display: flex;
   justify-content: center;
 }
-.start-btn {
+#start-btn {
   margin: 5px;
   padding: 5px 20px;
   border: 1px solid grey;
@@ -43,6 +43,16 @@ body {
   font-family: "Cinzel", serif;
   font-size: 14px;
 }
+
+/* GAME BOARD
+-------------------------------------*/
+.tile {
+  display: grid;
+  border: 1px solid #000;
+  padding: 50px;
+  background-color: #fff;
+}
+
 /* HEADINGS AND TEXT
 -------------------------------------*/
 h1 {
