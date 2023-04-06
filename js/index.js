@@ -1,18 +1,9 @@
-// 583  - Jon Snow
-// 957  - Sansa Stark
-// 1303 - Daenerys Targaryen
-// 529  - Jaime Lannister
-// 238  - Cersei Lannister
-// 1052 - Tyrion Lannister
-// 823  - Petyr Baelish
-// 743  - Melisandre
-// 565 - Joffrey Baratheon
-// 148  - Arya Stark
-
 import { baseUrl } from "../settings/api.js";
 import { getSelectedPlayers } from "./utils/playersFunction.js";
 
 const resultsContainer = document.querySelector(".results-container");
+const banner1 = document.querySelector(".banner.player1");
+const banner2 = document.querySelector(".banner.player2");
 
 // Character numbers to add to baseUrl
 const characters = [583, 957, 1303, 529, 238, 1052, 823, 743, 565, 148];
@@ -40,18 +31,33 @@ async function getCharacters() {
       const characterName = character.name;
 
       const selectedPlayers = getSelectedPlayers();
+      const player1 = selectedPlayers[0]?.name; // "?" ensures that there is a selected player before accessing its name
+      const player2 = selectedPlayers[1]?.name;
 
       const doesObjectExist = selectedPlayers.find((play) => {
         console.log(play);
         return play.name === characterName;
       });
-      // console.log(doesObjectExist);
 
       if (doesObjectExist) {
         cssClass = "character-card";
       }
-      resultsContainer.innerHTML += `<div class="character-cards ${cssClass}" data-name="${character.name}">
+
+      resultsContainer.innerHTML += `<div class="character-cards ${cssClass}" data-name="${
+        character.name
+      }">
+      ${
+        player1 === characterName
+          ? ` <img class="banner player1" src="../img/banner/Player1.png" />`
+          : ""
+      }
+      ${
+        player2 === characterName
+          ? ` <img class="banner player2" src="../img/banner/Player2.png" />`
+          : ""
+      }
       <h3>${character.name}</h3>
+  
       <img src="../img/characters/${characterName}.png" />
         <p class="gender">Gender: ${character.gender}</p>
         <p>Culture: ${character.culture}</p>
@@ -60,9 +66,9 @@ async function getCharacters() {
         </div>`;
     } catch (error) {
       console.log(error);
-    } finally {
     }
   }
+
   // Get individual cards with the data and loop over with forEach
   const characterCards = document.querySelectorAll(".character-cards");
   console.log(characterCards);
