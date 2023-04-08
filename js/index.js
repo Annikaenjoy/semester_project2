@@ -5,6 +5,14 @@ const resultsContainer = document.querySelector(".results-container");
 const banner1 = document.querySelector(".banner.player1");
 const banner2 = document.querySelector(".banner.player2");
 
+// Go to the battlefield button
+const playButton = document.querySelector("#play-button");
+// playButton.disabled = true;
+
+playButton.addEventListener("click", function () {
+  window.location.href = "../boardGame.html";
+});
+
 // Character numbers to add to baseUrl
 const characters = [583, 957, 1303, 529, 238, 1052, 823, 743, 565, 148];
 
@@ -42,7 +50,6 @@ async function getCharacters() {
       if (doesObjectExist) {
         cssClass = "character-card";
       }
-
       resultsContainer.innerHTML += `<div class="character-cards ${cssClass}" data-name="${
         character.name
       }">
@@ -88,9 +95,7 @@ async function getCharacters() {
       return;
     }
 
-    // console.log(event);
     this.classList.toggle("character-card");
-    this.classList.toggle("character-cards");
 
     // Check if player exists in localstorage
     const playerExists = selectedPlayers.find(function (play) {
