@@ -6,6 +6,8 @@ const resultsContainer = document.querySelector(".results-container");
 // Go to the battlefield button
 const playButton = document.querySelector("#play-button");
 
+playButton.disabled = true;
+
 playButton.addEventListener("click", function () {
   window.location.href = "../boardGame.html";
 });
@@ -82,8 +84,15 @@ async function getCharacters() {
     });
   }
 }
-
 getCharacters();
+
+// Get individual cards with the data and loop over with forEach
+const characterCards = document.querySelectorAll(".character-cards");
+console.log(characterCards);
+// onClick event
+characterCards.forEach((cards) => {
+  cards.addEventListener("click", handleClick);
+});
 
 function handleClick(event) {
   const name = this.dataset.name;
@@ -94,7 +103,6 @@ function handleClick(event) {
     // Already have two selected characters and clicked on non-selected character
     return;
   }
-  console.log(event);
 
   this.classList.toggle("character-card");
 
@@ -114,6 +122,18 @@ function handleClick(event) {
     savePlayers(newPlayers);
   }
 }
+
+// Check if two players are selected to localStorage,
+// if there is, playButton is enabled.
+function checkPlayers() {
+  const selectedPlayers = getSelectedPlayers();
+  const numSelected = selectedPlayers.length;
+  playButton.disabled = numSelected < 2;
+}
+
 function savePlayers(players) {
   localStorage.setItem("players", JSON.stringify(players));
+  checkPlayers();
 }
+// Call checkPlayers() when the page loads
+window.addEventListener("load", checkPlayers);

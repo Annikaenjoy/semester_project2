@@ -1,3 +1,4 @@
+// Creates dice and dot positions
 export function createDice(number) {
   const dotPositionMatrix = {
     1: [[50, 50]],
@@ -60,12 +61,15 @@ function randomizeDice(diceContainer, numberOfDice) {
   }
 }
 
+// Change number of dices displayed
 const NUMBER_OF_DICE = 1;
+
 const diceContainer = document.querySelector(".dice-container");
 const btnRollDice = document.querySelector(".btn-roll-dice");
 
 randomizeDice(diceContainer, NUMBER_OF_DICE);
 
+// Roll dice and animation
 btnRollDice.addEventListener("click", () => {
   const interval = setInterval(() => {
     randomizeDice(diceContainer, NUMBER_OF_DICE);
