@@ -2,12 +2,9 @@ import { baseUrl } from "../settings/api.js";
 import { getSelectedPlayers } from "./utils/playersFunction.js";
 
 const resultsContainer = document.querySelector(".results-container");
-const banner1 = document.querySelector(".banner.player1");
-const banner2 = document.querySelector(".banner.player2");
 
 // Go to the battlefield button
 const playButton = document.querySelector("#play-button");
-// playButton.disabled = true;
 
 playButton.addEventListener("click", function () {
   window.location.href = "../boardGame.html";
@@ -15,6 +12,8 @@ playButton.addEventListener("click", function () {
 
 // Character numbers to add to baseUrl
 const characters = [583, 957, 1303, 529, 238, 1052, 823, 743, 565, 148];
+
+resultsContainer.innerHTML = "";
 
 // Loop through characters and fetch. Create new urls and get data
 async function getCharacters() {
@@ -74,49 +73,47 @@ async function getCharacters() {
     } catch (error) {
       console.log(error);
     }
-  }
-
-  // Get individual cards with the data and loop over with forEach
-  const characterCards = document.querySelectorAll(".character-cards");
-  console.log(characterCards);
-
-  // onClick event
-  characterCards.forEach((cards) => {
-    cards.addEventListener("click", handleClick);
-  });
-
-  function handleClick(event) {
-    const name = this.dataset.name;
-    const selectedPlayers = getSelectedPlayers();
-    const numSelected = selectedPlayers.length;
-
-    if (numSelected === 2 && !this.classList.contains("character-card")) {
-      // Already have two selected characters and clicked on non-selected character
-      return;
-    }
-
-    this.classList.toggle("character-card");
-
-    // Check if player exists in localstorage
-    const playerExists = selectedPlayers.find(function (play) {
-      return play.name === name;
+    // Get individual cards with the data and loop over with forEach
+    const characterCards = document.querySelectorAll(".character-cards");
+    console.log(characterCards);
+    // onClick event
+    characterCards.forEach((cards) => {
+      cards.addEventListener("click", handleClick);
     });
-
-    if (!playerExists) {
-      // Add player to localstorage
-      const player = { name: name };
-      selectedPlayers.push(player);
-      savePlayers(selectedPlayers);
-    } else {
-      // Remove player from localstorage
-      const newPlayers = selectedPlayers.filter((play) => play.name !== name);
-      savePlayers(newPlayers);
-    }
   }
 }
 
 getCharacters();
 
+function handleClick(event) {
+  const name = this.dataset.name;
+  const selectedPlayers = getSelectedPlayers();
+  const numSelected = selectedPlayers.length;
+
+  if (numSelected === 2 && !this.classList.contains("character-card")) {
+    // Already have two selected characters and clicked on non-selected character
+    return;
+  }
+  console.log(event);
+
+  this.classList.toggle("character-card");
+
+  // Check if player exists in localstorage
+  const playerExists = selectedPlayers.find(function (play) {
+    return play.name === name;
+  });
+
+  if (!playerExists) {
+    // Add player to localstorage
+    const player = { name: name };
+    selectedPlayers.push(player);
+    savePlayers(selectedPlayers);
+  } else {
+    // Remove player from localstorage
+    const newPlayers = selectedPlayers.filter((play) => play.name !== name);
+    savePlayers(newPlayers);
+  }
+}
 function savePlayers(players) {
   localStorage.setItem("players", JSON.stringify(players));
 }

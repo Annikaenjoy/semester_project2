@@ -1,5 +1,6 @@
 import { getSelectedPlayers } from "./utils/playersFunction.js";
-const playerContainer = document.querySelector(".results-container");
+import { createDice } from "./utils/dice.js";
+const playerContainer = document.querySelector(".board-container");
 
 const selectedPlayers = getSelectedPlayers();
 
@@ -10,10 +11,3 @@ for (let i = 0; i < selectedPlayers.length; i++) {
     <img src="../img/characters/${selectedPlayers[i].name}.png" />
     </div>`;
 }
-
-// selectedPlayers.forEach((selected) => {
-//   playerContainer.innerHTML += `<div class="player">
-//     <img src="../img/characters/${selected.name}.png" />
-
-//     </div>`;
-// });
