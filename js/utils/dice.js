@@ -1,3 +1,6 @@
+// Rolling dice audio
+let rollingSound = new Audio("../../assets/audio/dice-142528.mp3");
+
 // Creates dice and dot positions
 export function createDice(number) {
   const dotPositionMatrix = {
@@ -71,6 +74,7 @@ randomizeDice(diceContainer, NUMBER_OF_DICE);
 
 // Roll dice and animation
 btnRollDice.addEventListener("click", () => {
+  rollingSound.play();
   const interval = setInterval(() => {
     randomizeDice(diceContainer, NUMBER_OF_DICE);
   }, 50);

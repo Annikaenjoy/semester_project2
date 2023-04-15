@@ -4,10 +4,13 @@ const playerContainer = document.querySelector(".board-container");
 
 const selectedPlayers = getSelectedPlayers();
 
-for (let i = 0; i < selectedPlayers.length; i++) {
-  console.log(selectedPlayers[i].name);
-
+selectedPlayers.forEach((selected) => {
   playerContainer.innerHTML += `<div class="player">
-    <img src="../img/characters/${selectedPlayers[i].name}.png" />
+    <img src="../assets/img/characters/${selected.name}.png" />
+
     </div>`;
-}
+});
+console.log(selectedPlayers);
+
+let player1 = 0;
+let player2 = 0;

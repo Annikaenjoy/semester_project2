@@ -56,17 +56,17 @@ async function getCharacters() {
       }">
       ${
         player1 === characterName
-          ? ` <img class="banner player1" src="../img/banner/Player1.png" />`
+          ? ` <img class="banner player1" src="../assets/img/banner/Player1.png" />`
           : ""
       }
       ${
         player2 === characterName
-          ? ` <img class="banner player2" src="../img/banner/Player2.png" />`
+          ? ` <img class="banner player2" src="../assets/img/banner/Player2.png" />`
           : ""
       }
       <h3>${character.name}</h3>
   
-      <img src="../img/characters/${characterName}.png" />
+      <img src="../assets/img/characters/${characterName}.png" />
         <p class="gender">Gender: ${character.gender}</p>
         <p>Culture: ${character.culture}</p>
         <p>Born: ${character.born}</p>
@@ -75,24 +75,17 @@ async function getCharacters() {
     } catch (error) {
       console.log(error);
     }
-    // Get individual cards with the data and loop over with forEach
-    const characterCards = document.querySelectorAll(".character-cards");
-    console.log(characterCards);
-    // onClick event
-    characterCards.forEach((cards) => {
-      cards.addEventListener("click", handleClick);
-    });
   }
+  // Get individual cards with the data and loop over with forEach
+  const characterCards = document.querySelectorAll(".character-cards");
+  console.log(characterCards);
+  // onClick event
+  characterCards.forEach((cards) => {
+    cards.addEventListener("click", handleClick);
+  });
 }
-getCharacters();
 
-// Get individual cards with the data and loop over with forEach
-const characterCards = document.querySelectorAll(".character-cards");
-console.log(characterCards);
-// onClick event
-characterCards.forEach((cards) => {
-  cards.addEventListener("click", handleClick);
-});
+getCharacters();
 
 function handleClick(event) {
   const name = this.dataset.name;
@@ -102,9 +95,9 @@ function handleClick(event) {
   if (numSelected === 2 && !this.classList.contains("character-card")) {
     // Already have two selected characters and clicked on non-selected character
     return;
+  } else {
+    this.classList.toggle("character-card");
   }
-
-  this.classList.toggle("character-card");
 
   // Check if player exists in localstorage
   const playerExists = selectedPlayers.find(function (play) {
@@ -123,6 +116,11 @@ function handleClick(event) {
   }
 }
 
+function savePlayers(players) {
+  localStorage.setItem("players", JSON.stringify(players));
+  checkPlayers();
+}
+
 // Check if two players are selected to localStorage,
 // if there is, playButton is enabled.
 function checkPlayers() {
@@ -131,9 +129,5 @@ function checkPlayers() {
   playButton.disabled = numSelected < 2;
 }
 
-function savePlayers(players) {
-  localStorage.setItem("players", JSON.stringify(players));
-  checkPlayers();
-}
 // Call checkPlayers() when the page loads
 window.addEventListener("load", checkPlayers);
