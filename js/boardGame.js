@@ -1,6 +1,6 @@
 import { getSelectedPlayers } from "./utils/playersFunction.js";
 import { createDice } from "./utils/dice.js";
-const playerContainer = document.querySelector(".board-container");
+const playerContainer = document.querySelector(".player-container");
 
 const selectedPlayers = getSelectedPlayers();
 

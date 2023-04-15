@@ -72,6 +72,10 @@ body {
   background-color: #fff;
 }
 
+.player img {
+  height: 90px;
+}
+
 /* HEADINGS AND TEXT
 -------------------------------------*/
 h1 {
@@ -105,6 +109,10 @@ p {
 -------------------------------------*/
 .dice-container {
   display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  width: 100%;
+  height: 100px;
 }
 .dice {
   background-color: #fff;
@@ -132,7 +140,23 @@ p {
     translateY(calc(var(--top) * -1));
 }
 .btn-roll-dice {
+  display: block;
+  margin: auto;
   margin-top: 10px;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  background-color: darkgray;
+}
+.btn-roll-dice:hover {
+  background-color: #615f5f;
+}
+.btn-roll-dice:active {
+  background-color: #615f5f;
+  box-shadow: 0 3px #7b7b7b;
+  transform: translateY(2px);
 }
 /* IMAGES
 -------------------------------------*/
