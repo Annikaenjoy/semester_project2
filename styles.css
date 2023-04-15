@@ -53,29 +53,6 @@ body {
   z-index: 100;
 }
 
-/* GAME BOARD
--------------------------------------*/
-.board {
-  display: grid;
-  max-width: 600px;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  border: 1px solid black;
-  margin: auto;
-}
-
-.tile {
-  display: grid;
-  border: 1px solid black;
-  max-width: 100px;
-  height: 100px;
-  background-color: #fff;
-}
-
-.player img {
-  height: 90px;
-}
-
 /* HEADINGS AND TEXT
 -------------------------------------*/
 h1 {
@@ -105,6 +82,41 @@ p {
   text-align: center;
 }
 
+/* GAME BOARD
+-------------------------------------*/
+.board {
+  display: grid;
+  max-width: 600px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  border: 1px solid black;
+  margin: auto;
+}
+
+.tile {
+  display: grid;
+  border: 1px solid black;
+  max-width: 100px;
+  height: 100px;
+  background-color: #fff;
+}
+
+.player-container {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  height: 120px;
+  margin: auto;
+}
+.player {
+  display: inline-flex;
+  flex-direction: column-reverse;
+  padding: 20px;
+}
+.player img {
+  height: 150px;
+}
+
 /* DICE
 -------------------------------------*/
 .dice-container {
@@ -113,6 +125,7 @@ p {
   margin-top: 50px;
   width: 100%;
   height: 100px;
+  /* background-color: #615f5f; */
 }
 .dice {
   background-color: #fff;
