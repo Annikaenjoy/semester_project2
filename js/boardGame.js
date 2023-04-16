@@ -13,6 +13,11 @@ selectedPlayers.forEach((selected) => {
     </div>`;
 });
 
+// Alert if accessing the game board without two players.
+if (selectedPlayers.length <= 1) {
+  alert("You need to select two players to play!");
+}
+
 console.log(selectedPlayers[0].name);
 console.log(selectedPlayers[1].name);
 

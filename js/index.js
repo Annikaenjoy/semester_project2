@@ -1,4 +1,5 @@
 import { baseUrl } from "../settings/api.js";
+import { displayMessage } from "./utils/displayMessage.js";
 import { getSelectedPlayers } from "./utils/playersFunction.js";
 
 const resultsContainer = document.querySelector(".results-container");
@@ -74,6 +75,7 @@ async function getCharacters() {
         </div>`;
     } catch (error) {
       console.log(error);
+      resultsContainer.innerHTML = displayMessage("error", error);
     }
   }
   // Get individual cards with the data and loop over with forEach

@@ -257,7 +257,8 @@ p {
   left: 500px;
   top: 0;
 }
-
+/* PLAYERS
+-------------------------------------*/
 .player-container {
   display: flex;
   justify-content: space-between;
@@ -361,12 +362,25 @@ img {
   display: flex;
   margin: auto;
 }
+/* MESSAGE
+-------------------------------------*/
+.message {
+  border: 1px solid lightgrey;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.01);
+}
+
+.message.error {
+  border-color: red;
+  color: red;
+  background: rgba(255, 0, 0, 0.05);
+}
 
 /* LOADER
 -------------------------------------*/
 .loader {
   border: 16px solid #f3f3f3;
-  border-top: 16px solid #630732;
+  border-top: 16px solid #2c5e7e;
   border-radius: 100%;
   width: 80px;
   height: 80px;
