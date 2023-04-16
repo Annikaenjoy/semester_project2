@@ -85,20 +85,177 @@ p {
 /* GAME BOARD
 -------------------------------------*/
 .board {
-  display: grid;
-  max-width: 600px;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  border: 1px solid black;
-  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 600px; /* 6 tiles wide */
+  height: 500px; /* 5 tiles high */
+  background-color: #fff;
+  margin: 20px auto;
+  position: relative;
 }
 
 .tile {
-  display: grid;
-  border: 1px solid black;
-  max-width: 100px;
+  box-sizing: border-box;
+  width: 100px;
   height: 100px;
-  background-color: #fff;
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+}
+
+.tile[data-position="1"] {
+  left: 0;
+  top: 400px;
+}
+
+.tile[data-position="2"] {
+  left: 100px;
+  top: 400px;
+}
+
+.tile[data-position="3"] {
+  left: 200px;
+  top: 400px;
+}
+
+.tile[data-position="4"] {
+  left: 300px;
+  top: 400px;
+}
+
+.tile[data-position="5"] {
+  left: 400px;
+  top: 400px;
+}
+
+.tile[data-position="6"] {
+  left: 500px;
+  top: 400px;
+}
+
+.tile[data-position="7"] {
+  left: 500px;
+  top: 300px;
+}
+
+.tile[data-position="8"] {
+  left: 400px;
+  top: 300px;
+}
+
+.tile[data-position="9"] {
+  left: 300px;
+  top: 300px;
+}
+
+.tile[data-position="10"] {
+  left: 200px;
+  top: 300px;
+}
+
+.tile[data-position="11"] {
+  left: 100px;
+  top: 300px;
+}
+
+.tile[data-position="12"] {
+  left: 0;
+  top: 300px;
+}
+
+.tile[data-position="13"] {
+  left: 0;
+  top: 200px;
+}
+
+.tile[data-position="14"] {
+  left: 100px;
+  top: 200px;
+}
+
+.tile[data-position="15"] {
+  left: 200px;
+  top: 200px;
+}
+
+.tile[data-position="16"] {
+  left: 300px;
+  top: 200px;
+}
+
+.tile[data-position="17"] {
+  left: 400px;
+  top: 200px;
+}
+
+.tile[data-position="18"] {
+  left: 500px;
+  top: 200px;
+}
+
+.tile[data-position="19"] {
+  left: 500px;
+  top: 100px;
+}
+
+.tile[data-position="20"] {
+  left: 400px;
+  top: 100px;
+}
+
+.tile[data-position="21"] {
+  left: 300px;
+  top: 100px;
+}
+
+.tile[data-position="22"] {
+  left: 200px;
+  top: 100px;
+}
+
+.tile[data-position="23"] {
+  left: 100px;
+  top: 100px;
+}
+
+.tile[data-position="24"] {
+  left: 0;
+  top: 100px;
+}
+
+.tile[data-position="25"] {
+  left: 0;
+  top: 0;
+}
+
+.tile[data-position="26"] {
+  left: 100px;
+  top: 0;
+}
+
+.tile[data-position="27"] {
+  left: 200px;
+  top: 0;
+}
+
+.tile[data-position="28"] {
+  left: 300px;
+  top: 0;
+}
+
+.tile[data-position="29"] {
+  left: 400px;
+  top: 0;
+}
+
+.tile[data-position="30"] {
+  left: 500px;
+  top: 0;
 }
 
 .player-container {
@@ -113,8 +270,34 @@ p {
   flex-direction: column-reverse;
   padding: 20px;
 }
+
 .player img {
   height: 150px;
+}
+
+.p1,
+.p2 {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  position: absolute;
+  border: 3px solid black;
+}
+
+.p1 {
+  z-index: 1;
+  top: 20px;
+  left: -50%;
+  transition: all linear 0.5s;
+  background-color: #ec5252;
+}
+
+.p2 {
+  z-index: 2;
+  top: 30px;
+  left: -50px;
+  transition: all linear 0.5s;
+  background-color: #f3b52e;
 }
 
 /* DICE

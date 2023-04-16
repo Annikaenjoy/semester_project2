@@ -78,6 +78,5 @@ btnRollDice.addEventListener("click", () => {
   const interval = setInterval(() => {
     randomizeDice(diceContainer, NUMBER_OF_DICE);
   }, 50);
-
   setTimeout(() => clearInterval(interval), 1000);
 });
