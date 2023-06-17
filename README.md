@@ -48,7 +48,9 @@ npm run start
 ## Contributing
 
 Thank you for taking the time to contribute!
-Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved.
+Read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved.
+
+Please make sure to use open a pull request so code can be reviewed. If you don't know how, follow this step by step guide: https://opensource.com/article/19/7/create-pull-request-github
 
 > ### Legal Notice
 >
